@@ -65,7 +65,7 @@ function sumAndMultiply(a, b, c) { //eslint-disable-line
   var productString = `The product of ${a} and ${b} and ${c} is ${productOfNums}.`
   var ReturnArray2 = [sumOfNums, productOfNums, sumString, productString];
 
-  return smReturnArray2;
+  return ReturnArray2;
 
 }
 
@@ -87,13 +87,28 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 var testArray = [2, 3, 4]; //eslint-disable-line
 
-function sumArray(sumArr) { //eslint-disable-line
+sumArray(testArray);
 
+function sumArray(sumArr) { //eslint-disable-line
+  
+  var numTotal = 0;
+
+    for (var i = 0; i < sumArr.length; i++)
+    {
+      var total = sum(sumArr[i], numTotal); // steps through array adding to total from last call or 0 on 1st go
+      numTotal = total[0];                  // strips string that was returned from sum
+    }
+
+  var sumArrayString = `${sumArr[0]},${sumArr[1]},${sumArr[2]} was passed in as an array of numbers, and ${numTotal} is their sum.`
+
+  var returnSumArray = [numTotal, sumArrayString];
+
+  return returnSumArray;
 }
 
 // Here is the test for sumArray(); uncomment it to run it
 
-// testSumArray(testArray);
+testSumArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
