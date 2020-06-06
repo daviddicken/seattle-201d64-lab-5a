@@ -59,14 +59,26 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
 
-  var sumOfNums = (a + b + c);
-  var productOfNums = (a * b * c);
-  var sumString = `${a} and ${b} and ${c} sum to ${sumOfNums}.`
-  var productString = `The product of ${a} and ${b} and ${c} is ${productOfNums}.`
-  var ReturnArray2 = [sumOfNums, productOfNums, sumString, productString];
+  var numbs = [a, b, c];                        //create array to work with
+  var sumTotal = 0;
+  var multiTotal = 1;
+    
+  for (var i = 0; i < numbs.length; i++)
+  {
+    var tempSumTotal = sum(numbs[i], sumTotal); // steps through array adding to total from last call or 0 on 1st go
+    sumTotal = tempSumTotal[0];                  // strips string that was returned from sum
+  }
 
-  return ReturnArray2;
+  for (var j = 0; j < numbs.length; j++)
+  {
+    var tempMultiTotal = multiply(numbs[j], multiTotal); 
+    multiTotal = tempMultiTotal[0];       
+  }
+  var sumString = `${a} and ${b} and ${c} sum to ${sumTotal}.`
+  var productString = `The product of ${a} and ${b} and ${c} is ${multiTotal}.`
+  var returnArray2 = [sumTotal, multiTotal, sumString, productString];
 
+  return returnArray2;
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -126,7 +138,7 @@ Test this function by hand in the console to get it working, and when you think 
 
 function multiplyArray(multArr) { //eslint-disable-line
 
-  var multiplyTotal = 1;                //had to start at one or would always return 0 ;)
+  var multiplyTotal = 1;                
 
   for (var i = 0; i < multArr.length; i++)
     {
